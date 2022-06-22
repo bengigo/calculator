@@ -1,44 +1,36 @@
-function add(previusOperand, currentOperand) {
-  return previusOperand + currentOperand;
+function add(previusNum, currentNum) {
+  return previusNum + currentNum;
 }
 
-function substract(previusOperand, currentOperand) {
-  return previusOperand - currentOperand;
+function substract(previusNum, currentNum) {
+  return previusNum - currentNum;
 }
 
-function multiply(previusOperand, currentOperand) {
-  return previusOperand * currentOperand;
+function multiply(previusNum, currentNum) {
+  return previusNum * currentNum;
 }
 
-function divide(previusOperand, currentOperand) {
-  return previusOperand / currentOperand;
+function divide(previusNum, currentNum) {
+  return previusNum / currentNum;
 }
 
 // convert functions above to class methods
 
-function operate(operator, previusOperand, currentOperand) {
-//   switch (operator) {
-//     case '+':
-//       add(previusOperand, currentOperand);
-//       break;
-//     case '-':
-//       substract(previusOperand, currentOperand);
-//       break;
-//     case '*':
-//       multiply(previusOperand, currentOperand);
-//       break;
-//     case '÷':
-//       divide(previusOperand, currentOperand);
-//       break;
-//     default:
-//   }
+function operate(operator, previusNum, currentNum) {
   if (operator === '+') {
-     return add(previusOperand, currentOperand);
+     return add(previusNum, currentNum);
   } else if (operator === '-') {
-    return substract(previusOperand, currentOperand);
+    return substract(previusNum, currentNum);
   } else if (operator === '*') {
-    return multiply(previusOperand, currentOperand);
+    return multiply(previusNum, currentNum);
   } else if (operator === '÷') {
-    return divide(previusOperand, currentOperand);
+    return divide(previusNum, currentNum);
   }
 }
+
+const previousOperand = document.querySelector('.previous-operand');
+const currentOperand = document.querySelector('.current-operand');
+const clearButton = document.querySelector('.all-clear');
+const deleteButton = document.querySelector('.delete');
+const operatorButtons = document.querySelectorAll('.operator');
+const numbers = document.querySelectorAll('.numbers');
