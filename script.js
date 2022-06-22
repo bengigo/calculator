@@ -14,8 +14,6 @@ function divide(previusNum, currentNum) {
   return previusNum / currentNum;
 }
 
-// convert functions above to class methods
-
 function operate(operator, previusNum, currentNum) {
   if (operator === '+') {
      return add(previusNum, currentNum);
@@ -33,4 +31,27 @@ const currentOperand = document.querySelector('.current-operand');
 const clearButton = document.querySelector('.all-clear');
 const deleteButton = document.querySelector('.delete');
 const operatorButtons = document.querySelectorAll('.operator');
-const numbers = document.querySelectorAll('.numbers');
+const numberButtons = document.querySelectorAll('.number');
+const equalsButton = document.querySelector('.equals');
+
+numberButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        currentOperand.textContent += button.innerText
+    })
+})
+
+operatorButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        if(currentOperand.innerText !== '' && previousOperand.innerText == '') {
+            previousOperand.textContent = currentOperand.innerText + button.innerText
+            currentOperand.textContent = '';
+        }
+    })
+})
+
+equalsButton.addEventListener('click', () => {
+    if(previousOperand.textContent !== '' && currentOperand.textContent !== '') {
+        let operator = previousOperand.innerText.slice(-1);
+        previousOperand.textContent = parseInt(operate(operator, previousOperand, currentOperand));
+    }
+})
