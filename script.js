@@ -38,39 +38,38 @@ const equalsButton = document.querySelector('.equals');
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    let number = button.innerText;
-    if(number === '.' && currentOperand.innerText.includes('.')) return;
-    currentOperand.textContent += button.innerText
-  })
-})
+    const number = button.innerText;
+    if (number === '.' && currentOperand.innerText.includes('.')) return;
+    currentOperand.textContent += button.innerText;
+  });
+});
 
 operatorButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    if (currentOperand.innerText !== '' && previousOperand.innerText == '') {
-      previousOperand.textContent = currentOperand.innerText + button.innerText
+    if (currentOperand.innerText !== '' && previousOperand.innerText === '') {
+      previousOperand.textContent = currentOperand.innerText + button.innerText;
       currentOperand.textContent = '';
     }
-  })
-})
+  });
+});
 
 equalsButton.addEventListener('click', () => {
   if (previousOperand.textContent !== '' && currentOperand.textContent !== '') {
-    let operator = previousOperand.innerText.slice(-1);
-    let previousNum = Number(previousOperand.innerText.slice(0, -1));
-    let currentNum = Number(currentOperand.innerText);
-    previousOperand.innerText = operate(operator, previousNum, currentNum)
+    const operator = previousOperand.innerText.slice(-1);
+    const previousNum = Number(previousOperand.innerText.slice(0, -1));
+    const currentNum = Number(currentOperand.innerText);
+    previousOperand.innerText = operate(operator, previousNum, currentNum);
     currentOperand.innerText = '';
   }
-})
+});
 
 clearButton.addEventListener('click', () => {
   previousOperand.textContent = '';
   currentOperand.textContent = '';
-})
+});
 
-// delete function
 deleteButton.addEventListener('click', () => {
-  if(currentOperand.textContent != '') {
+  if (currentOperand.textContent !== '') {
     currentOperand.textContent = currentOperand.innerText.slice(0, -1);
   }
-})
+});
