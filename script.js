@@ -69,3 +69,8 @@ clearButton.addEventListener('click', () => {
 })
 
 // delete function
+deleteButton.addEventListener('click', () => {
+  if(currentOperand.textContent != '') {
+    currentOperand.textContent = currentOperand.innerText.slice(0, -1);
+  }
+})
