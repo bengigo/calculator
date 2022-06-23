@@ -49,6 +49,12 @@ operatorButtons.forEach((button) => {
     if (currentOperand.innerText !== '' && previousOperand.innerText === '') {
       previousOperand.textContent = currentOperand.innerText + button.innerText;
       currentOperand.textContent = '';
+    } else if (currentOperand.innerText !== '' && previousOperand.innerText !== '') {
+      const operator = previousOperand.innerText.slice(-1);
+      const previousNum = Number(previousOperand.innerText.slice(0, -1));
+      const currentNum = Number(currentOperand.innerText);
+      previousOperand.innerText = operate(operator, previousNum, currentNum) + button.innerText;
+      currentOperand.innerText = '';
     }
   });
 });
