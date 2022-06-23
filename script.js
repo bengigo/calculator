@@ -15,15 +15,17 @@ function divide(previusNum, currentNum) {
 }
 
 function operate(operator, previusNum, currentNum) {
+  let result;
   if (operator === '+') {
-     return add(previusNum, currentNum);
+    result = add(previusNum, currentNum).toString();
   } else if (operator === '-') {
-    return substract(previusNum, currentNum);
+    result = substract(previusNum, currentNum).toString();
   } else if (operator === '*') {
-    return multiply(previusNum, currentNum);
+    result = multiply(previusNum, currentNum).toString();
   } else if (operator === '÷') {
-    return divide(previusNum, currentNum);
+    result = divide(previusNum, currentNum).toString();
   }
+  return result;
 }
 
 const previousOperand = document.querySelector('.previous-operand');
@@ -35,23 +37,34 @@ const numberButtons = document.querySelectorAll('.number');
 const equalsButton = document.querySelector('.equals');
 
 numberButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        currentOperand.textContent += button.innerText
-    })
+  button.addEventListener('click', () => {
+    let number = button.innerText;
+    console.log(number);
+    if(number === '.' && currentOperand.innerText.includes('.')) return;
+    currentOperand.textContent += button.innerText
+  })
 })
 
 operatorButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        if(currentOperand.innerText !== '' && previousOperand.innerText == '') {
-            previousOperand.textContent = currentOperand.innerText + button.innerText
-            currentOperand.textContent = '';
-        }
-    })
+  button.addEventListener('click', () => {
+    if (currentOperand.innerText !== '' && previousOperand.innerText == '') {
+      previousOperand.textContent = currentOperand.innerText + button.innerText
+      currentOperand.textContent = '';
+    }
+  })
 })
 
 equalsButton.addEventListener('click', () => {
-    if(previousOperand.textContent !== '' && currentOperand.textContent !== '') {
-        let operator = previousOperand.innerText.slice(-1);
-        previousOperand.textContent = parseInt(operate(operator, previousOperand, currentOperand));
-    }
+  if (previousOperand.textContent !== '' && currentOperand.textContent !== '') {
+    let operator = previousOperand.innerText.slice(-1);
+    let previousNum = Number(previousOperand.innerText.slice(0, -1));
+    let currentNum = Number(currentOperand.innerText);
+    previousOperand.innerText = operate(operator, previousNum, currentNum)
+    currentOperand.innerText = '';
+  }
 })
+
+
+//clear function
+
+// delete function
