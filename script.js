@@ -39,7 +39,6 @@ const equalsButton = document.querySelector('.equals');
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
     let number = button.innerText;
-    console.log(number);
     if(number === '.' && currentOperand.innerText.includes('.')) return;
     currentOperand.textContent += button.innerText
   })
@@ -64,7 +63,9 @@ equalsButton.addEventListener('click', () => {
   }
 })
 
-
-//clear function
+clearButton.addEventListener('click', () => {
+  previousOperand.textContent = '';
+  currentOperand.textContent = '';
+})
 
 // delete function
